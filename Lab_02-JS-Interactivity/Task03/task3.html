@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern To-Do</title>
+<link rel="stylesheet" href="task3.css">
+</head>
+<body>
+
+<div class="layout">
+    <aside class="sidebar">
+        <h2>Aliza's To-Do List</h2>
+        <p>Stay Focused & Organized :)</p>
+    </aside>
+
+    <main class="content">
+
+        <div class="task-card" id="task1">
+            <input type="text" value="Finalize the idea for FYP">
+            <div class="btn-group">
+                <button class="done" onclick="toggleTask('task1', this)">Done</button>
+                <button class="delete" onclick="removeTask('task1')">Delete</button>
+            </div>
+        </div>
+
+        <div class="task-card" id="task2">
+            <input type="text" value="Select Supervisor and pitch the idea">
+            <div class="btn-group">
+                <button class="done" onclick="toggleTask('task2', this)">Done</button>
+                <button class="delete" onclick="removeTask('task2')">Delete</button>
+            </div>
+        </div>
+
+        <div class="task-card" id="task3">
+            <input type="text" value="Submit FYP Inception Form">
+            <div class="btn-group">
+                <button class="done" onclick="toggleTask('task3', this)">Done</button>
+                <button class="delete" onclick="removeTask('task3')">Delete</button>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script src="task3.js"></script>
+</body>
+</html>

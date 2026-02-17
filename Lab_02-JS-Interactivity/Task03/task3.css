@@ -1,0 +1,108 @@
+body{
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    background:#f5ebe0;
+}
+
+.layout{
+    display:flex;
+    min-height:100vh;
+}
+
+/* Sidebar */
+.sidebar{
+    width:300px;
+    background:#473223;
+    color:white;
+    padding:40px 25px;
+    box-shadow:2px 0 10px rgba(0,0,0,0.15);
+}
+
+.sidebar h2{
+    font-size:30px;
+    font-weight:700;
+    margin-bottom:12px;
+    letter-spacing:1px;
+}
+
+.sidebar p{
+    font-size:16px;
+    opacity:0.9;
+    font-weight:400;
+}
+
+/* Content */
+.content{
+    flex:1;
+    padding:50px;
+    background:#fffaf5;
+}
+
+/* Task Cards */
+.task-card{
+    background:#fff8f0;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.1);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    transition:0.3s;
+    font-size:18px;
+}
+
+.task-card:hover{
+    transform:translateY(-4px);
+}
+
+/* Completed State */
+.task-card.completed{
+    background:#e8d8c3;
+}
+
+.task-card.completed input{
+    text-decoration:line-through;
+    color:#7f5539;
+}
+
+/* Input Styling */
+input{
+    border:none;
+    background:transparent;
+    font-size:20px;
+    width:65%;
+    font-weight:600;   /* bolder task names */
+    color:#3e2c1c;
+}
+
+input:focus{
+    outline:none;
+}
+
+/* Buttons */
+.btn-group button{
+    border:none;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-left:8px;
+    font-size:16px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+/* Keep Button Colors Same */
+.done{
+    background:#27ae60;
+    color:white;
+}
+
+.delete{
+    background:#e74c3c;
+    color:white;
+}
+
+.btn-group button:hover{
+    transform:scale(1.08);
+}
