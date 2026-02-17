@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Quiz</title>
+<link rel="stylesheet" href="task1.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>JavaScript Quiz</h1>
+
+    <div class="question">
+        <label>1. What does JS stand for?</label>
+        <input type="text" id="q1" placeholder="Enter your answer">
+    </div>
+
+    <div class="question">
+        <label>2. Which keyword declares block scope variable?</label>
+        <input type="text" id="q2" placeholder="Enter your answer">
+    </div>
+
+    <div class="question">
+        <label>3. Which method selects element by ID?</label>
+        <input type="text" id="q3" placeholder="Enter your answer">
+    </div>
+
+    <div class="buttons">
+        <button onclick="submitQuiz()">Submit</button>
+        <button class="reset" onclick="resetQuiz()">Reset</button>
+    </div>
+
+    <div id="result" class="result"></div>
+</div>
+
+<script src="task1.js"></script>
+</body>
+</html>
