@@ -1,0 +1,50 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #955658, #fad0c4);
+  margin: 0;
+  color: #333;
+}
+
+header {
+  background: linear-gradient(90deg, #f77a20, #924369);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.cart-box {
+  margin: 100px auto;
+  width: 70%;
+  background: rgb(255, 255, 255);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.cart-box:hover {
+  transform: scale(1.02);
+}
+
+.cart-box h2 {
+  color: #ee0979;
+  margin-bottom: 50px;
+}
+
+.cart-box p {
+  font-size: 1.1rem;
+  margin: 30px 0;
+}
+
+footer {
+  background: linear-gradient(90deg, #924369, #ff6a00);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  font-size: 0.9rem;
+}

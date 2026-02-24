@@ -1,0 +1,63 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb); /* light blue gradient */
+  color: #333;
+  margin: 0;
+}
+
+header {
+  text-align: center;
+  padding: 25px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #0a3d62, #1e5f74); /* deep blue gradient */
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.user-card {
+  background: linear-gradient(135deg, #0a3d62, #59a0db); /* bright blue gradient */
+  border-radius: 12px;
+  padding: 20px;
+  margin: 40px auto;
+  width: 320px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  animation: fadeIn 1s ease-in;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.user-card h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.user-card p {
+  margin: 8px 0 0;
+  font-size: 1rem;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  background: linear-gradient(90deg, #1e5f74, #0a3d62);
+  color: white;
+  margin-top: 80px;
+}
+main {
+  min-height: 400px;
+  text-wrap-style: auto;
+   text-align: center;
+}
+
