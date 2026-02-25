@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Data Using JSON</title>
+    <link rel="stylesheet" href="task7.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <nav class="navbar">
+        <div class="logo">📄 JSON Portal</div>
+        <ul>
+            <li class="active">Students</li>
+            <li>Reports</li>
+            <li>Settings</li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <div class="top-section">
+            <h1>Student Data Using JSON</h1>
+            <p>Store, Convert & Display Student Data</p>
+            <button onclick="loadStudents()">Load Student Data</button>
+        </div>
+
+        <div class="content-grid">
+
+            <div class="card">
+                <h2>Student Records</h2>
+                <div id="studentOutput"></div>
+            </div>
+
+            <div class="card">
+                <h2>JSON String</h2>
+                <pre id="jsonOutput"></pre>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="task7.js"></script>
+</body>
+</html>

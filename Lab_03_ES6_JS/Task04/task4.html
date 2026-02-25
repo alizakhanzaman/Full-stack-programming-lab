@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unique Course Registration</title>
+    <link rel="stylesheet" href="task4.css">
+</head>
+<body>
+
+    <div class="background"></div>
+
+    <div class="container">
+        <div class="card">
+            <h1>📚 Course Registration Portal</h1>
+            <p class="subtitle">Prevent duplicate course registration</p>
+
+            <div class="input-group">
+                <input type="text" id="courseInput" placeholder="Enter course name">
+                <button onclick="addCourse()">Add Course</button>
+            </div>
+
+            <p id="message"></p>
+
+            <div class="course-list">
+                <h3>Registered Courses</h3>
+                <ul id="courseList"></ul>
+            </div>
+
+            <div class="stats">
+                Total Unique Courses:
+                <span id="totalCourses">0</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="task4.js"></script>
+</body>
+</html>

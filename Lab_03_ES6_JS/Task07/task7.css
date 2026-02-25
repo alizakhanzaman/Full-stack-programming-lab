@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #2b5876, #4e4376);
+    min-height: 100vh;
+    color: white;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 40px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar li {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.navbar .active {
+    color: #00ffcc;
+    font-weight: bold;
+}
+
+/* MAIN CONTAINER */
+.container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.top-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.top-section button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: #0abced;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.top-section button:hover {
+    background: #0072ff;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.student-card {
+    background: rgba(0,0,0,0.3);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    transition: 0.3s;
+}
+
+.student-card:hover {
+    transform: translateY(-4px);
+}
+
+.course-tag {
+    display: inline-block;
+    background: #00ffcc;
+    color: black;
+    padding: 4px 8px;
+    border-radius: 6px;
+    margin: 5px 5px 0 0;
+    font-size: 12px;
+}
+
+/* JSON DISPLAY */
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 14px;
+    background: rgba(0,0,0,0.4);
+    padding: 15px;
+    border-radius: 10px;
+}

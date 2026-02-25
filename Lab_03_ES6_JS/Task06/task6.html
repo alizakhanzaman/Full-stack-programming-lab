@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini University Portal</title>
+    <link rel="stylesheet" href="task6.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">Air University Portal</div>
+        <ul>
+            <li class="active">Students</li>
+            <li>Courses</li>
+            <li>Dashboard</li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+
+        <div class="form-card">
+            <h2>Add New Student</h2>
+
+            <input type="number" id="studentID" placeholder="Student ID">
+            <input type="text" id="studentName" placeholder="Student Name">
+            <input type="text" id="courseName" placeholder="Register Course">
+
+            <div class="button-group">
+                <button onclick="addStudent()">Add Student</button>
+                <button onclick="registerCourse()">Add Course</button>
+                <button class="save-btn" onclick="saveData()">Save Data</button>
+            </div>
+
+            <p id="message"></p>
+        </div>
+
+        <div class="students-section">
+            <h2>Registered Students</h2>
+            <div id="studentGrid" class="student-grid"></div>
+        </div>
+
+    </div>
+
+    <script src="task6.js"></script>
+</body>
+</html>

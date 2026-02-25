@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Catalog - Map</title>
+    <link rel="stylesheet" href="task5.css">
+</head>
+<body>
+
+    <!-- Header Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            AlizaStore
+        </div>
+        <ul class="nav-links">
+            <li>Dashboard</li>
+            <li class="active">Products</li>
+            <li>Orders</li>
+            <li>Profile</li>
+        </ul>
+    </nav>
+
+    <!-- Main App -->
+    <div class="app">
+
+        <header class="page-header">
+            <h1>Product Catalog</h1>
+        </header>
+
+        <div class="controls">
+            <input type="number" id="productID" placeholder="Enter Product ID">
+            <button onclick="searchProduct()">Search</button>
+            <button class="delete-btn" onclick="deleteProduct()">Delete</button>
+        </div>
+
+        <div class="stats">
+            Total Products: <span id="totalProducts">0</span>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+
+        <div id="message"></div>
+
+    </div>
+
+    <script src="task5.js"></script>
+</body>
+</html>
