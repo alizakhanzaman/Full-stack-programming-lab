@@ -1,0 +1,118 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  display: flex;
+}
+
+.split-container {
+  display: flex;
+  width: 100%;
+}
+
+/* Left Panel with gradient + abstract overlay */
+.left-panel {
+  flex: 1;
+  background: linear-gradient(135deg, #505774, #1a2a6c, #687c9c);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.left-panel .overlay {
+  text-align: center;
+  color: #fff;
+  padding: 40px;
+}
+
+.left-panel h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px rgba(255,255,255,0.6);
+}
+
+.left-panel p {
+  font-size: 1.2rem;
+  max-width: 320px;
+  line-height: 1.5;
+}
+
+/* Right Panel with elevated card */
+.right-panel {
+  flex: 1;
+  background: #f4f7fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  width: 380px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.form-card h2 {
+  margin-bottom: 25px;
+  color: #333;
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #444;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #1a2a6c;
+  box-shadow: 0 0 8px #1a2a6c;
+  outline: none;
+}
+
+input.error {
+  border-color: crimson;
+  background: #ffe6e6;
+}
+
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, #1a2a6c, #505774);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+
+button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #186391, #1c5e91);
+}
+
+#formMessage {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+}

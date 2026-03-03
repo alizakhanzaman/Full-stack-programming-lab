@@ -1,0 +1,32 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #364d78, #3b5881);
+    font-family: Arial;
+}
+
+.gallery {
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    width: 650px;
+}
+
+img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+button {
+    margin: 10px;
+    padding: 8px 15px;
+    border: none;
+    background: #4e73df;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
