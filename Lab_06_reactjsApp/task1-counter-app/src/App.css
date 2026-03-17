@@ -1,0 +1,90 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: "Roboto", "Segoe UI", sans-serif;
+  background: #1A1A2E; 
+  color: #e0e0e0;
+  text-align: center;
+}
+
+/* Container */
+.container {
+  padding: 70px;
+}
+
+/* Title */
+.title {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  color: #e2e9ea; /* Teal accent */
+  font-weight: 1000;
+}
+
+/* Counter Box */
+.counter-box {
+  background: #2A1635;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  display: inline-block;
+  
+  min-width: 300px;
+}
+/* Warning Message */
+.warning {
+  color: #ff4d4d; /* bright red for visibility */
+  font-weight: 600;
+  margin: 20px 5px;
+  background: rgba(255, 77, 77, 0.1);
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+/* Count Display */
+.count {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  color: #4CC9F0; /* Blue accent */
+  font-weight: bold;
+}
+
+/* Buttons Layout */
+.buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Button Base */
+.btn {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+/* Specific Buttons */
+.increment {
+  background: #4CC9F0;
+  color: white;
+}
+
+.decrement {
+  background: #F72585;
+  color: white;
+}
+
+.reset {
+  background:#B5179E;
+  color: white;
+}
+
+/* Hover Effects */
+.btn:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
