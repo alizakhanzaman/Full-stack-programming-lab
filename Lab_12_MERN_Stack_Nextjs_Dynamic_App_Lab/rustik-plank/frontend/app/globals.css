@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --orange: #F07B1D;
+  --orange-dark: #D4620A;
+  --wood: #8B6043;
+  --cream: #FAF6F0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Lato', system-ui, sans-serif;
+  color: #2C2C2C;
+  background-color: #fff;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Orange accent line */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--orange);
+  margin-top: 8px;
+}
+
+.section-title.center::after {
+  margin: 8px auto 0;
+}
+
+/* Product card hover */
+.product-card:hover .product-overlay {
+  opacity: 1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 4px; }
+
+@layer components {
+  .btn-primary {
+    @apply bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 transition-all duration-200 uppercase text-sm tracking-wider;
+    background-color: #F07B1D;
+  }
+  .btn-primary:hover {
+    background-color: #D4620A;
+  }
+  .btn-outline {
+    @apply border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-bold py-2 px-6 transition-all duration-200 uppercase text-sm tracking-wider;
+  }
+  .input-field {
+    @apply w-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-orange-500 transition-colors;
+  }
+}
