@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>News Headlines API – Lab 13</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0d1117 0%, #161b22 60%, #0d1117 100%);
+      min-height: 100vh;
+      color: #e0e0e0;
+      padding: 30px 20px;
+    }
+
+    header { text-align: center; margin-bottom: 30px; }
+    header h1 { font-size: 2rem; color: #58a6ff; letter-spacing: 1px; }
+    header p  { color: #8b949e; margin-top: 6px; font-size: 0.95rem; }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 800px;
+      margin: 0 auto 24px;
+    }
+    .card h2 { font-size: 1.05rem; color: #58a6ff; margin-bottom: 16px; }
+
+    .tabs { display: flex; gap: 6px; margin-bottom: 18px; flex-wrap: wrap; }
+    .tab {
+      padding: 7px 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: transparent;
+      color: #8b949e;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .tab.active { background: #58a6ff; color: #000; border-color: #58a6ff; font-weight: 600; }
+
+    .row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    input[type="text"], select {
+      flex: 1;
+      min-width: 150px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      color: #e0e0e0;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    input::placeholder { color: #555; }
+    input:focus, select:focus { border-color: #58a6ff; }
+    select option { background: #161b22; }
+
+    button.btn-go {
+      padding: 10px 22px;
+      border-radius: 8px;
+      border: none;
+      background: #58a6ff;
+      color: #000;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    button.btn-go:hover { opacity: 0.85; }
+
+    .loader {
+      text-align: center;
+      padding: 20px;
+      color: #58a6ff;
+      display: none;
+      font-size: 0.9rem;
+    }
+
+    .error-box {
+      background: rgba(255, 80, 80, 0.1);
+      border: 1px solid rgba(255,80,80,0.25);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: #ff9090;
+      margin-top: 14px;
+      display: none;
+    }
+
+    .result-meta {
+      display: none;
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: #8b949e;
+      margin-bottom: 12px;
+    }
+
+    .articles { display: flex; flex-direction: column; gap: 12px; display: none; }
+
+    .article-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 14px 16px;
+      transition: border-color 0.2s;
+    }
+    .article-card:hover { border-color: #58a6ff55; }
+
+    .article-card .art-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #e6edf3;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+    .article-card .art-desc {
+      font-size: 0.82rem;
+      color: #8b949e;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .article-card .art-meta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      font-size: 0.78rem;
+      color: #58a6ff;
+    }
+    .article-card .art-meta span { color: #6e7681; }
+    .article-card a {
+      color: #58a6ff;
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+    .article-card a:hover { text-decoration: underline; }
+
+    .badge {
+      display: inline-block;
+      background: rgba(88,166,255,0.15);
+      color: #58a6ff;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 0.75rem;
+      margin-right: 6px;
+    }
+
+    .toggle-json {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #6e7681;
+      font-size: 0.78rem;
+      padding: 5px 12px;
+      border-radius: 6px;
+      margin-top: 14px;
+      cursor: pointer;
+      display: none;
+    }
+    .raw-json {
+      background: rgba(0,0,0,0.4);
+      border-radius: 10px;
+      padding: 14px;
+      font-family: monospace;
+      font-size: 0.76rem;
+      color: #b0ffb0;
+      max-height: 280px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .endpoints {
+      font-size: 0.82rem;
+      color: #8b949e;
+      line-height: 2;
+    }
+    .endpoints code {
+      background: rgba(255,255,255,0.07);
+      padding: 2px 7px;
+      border-radius: 4px;
+      color: #58a6ff;
+      font-family: monospace;
+    }
+
+    .country-hint {
+      font-size: 0.78rem;
+      color: #6e7681;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📰 News Headlines API</h1>
+  <p>Lab 13 · Full Stack Programming · Browser Tester</p>
+</header>
+
+<!-- Tester Card -->
+<div class="card">
+  <h2>🔍 Test the API</h2>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('byCountry')">By Country</button>
+    <button class="tab" onclick="switchTab('byCategory')">By Category</button>
+    <button class="tab" onclick="switchTab('byKeyword')">Search Keyword</button>
+  </div>
+
+  <!-- Tab: by country -->
+  <div id="tab-byCountry">
+    <div class="row">
+      <input type="text" id="countryInput" placeholder="Country code (e.g. pk, us, gb, in, ae)" maxlength="2" />
+      <button class="btn-go" onclick="fetchByCountry()">Get Headlines</button>
+    </div>
+    <div class="country-hint">Common codes: pk · us · gb · in · ae · sa · au · ca · de · fr</div>
+  </div>
+
+  <!-- Tab: by category -->
+  <div id="tab-byCategory" style="display:none">
+    <div class="row">
+      <input type="text" id="catCountryInput" placeholder="Country code (e.g. us, pk)" maxlength="2" />
+      <select id="categorySelect">
+        <option value="general">General</option>
+        <option value="business">Business</option>
+        <option value="technology">Technology</option>
+        <option value="sports">Sports</option>
+        <option value="health">Health</option>
+        <option value="science">Science</option>
+        <option value="entertainment">Entertainment</option>
+      </select>
+      <button class="btn-go" onclick="fetchByCategory()">Get Headlines</button>
+    </div>
+  </div>
+
+  <!-- Tab: by keyword -->
+  <div id="tab-byKeyword" style="display:none">
+    <div class="row">
+      <input type="text" id="keywordInput" placeholder="Search keyword (e.g. cricket, AI, Pakistan)" />
+      <button class="btn-go" onclick="fetchByKeyword()">Search</button>
+    </div>
+  </div>
+
+  <div class="loader" id="loader">⏳ Fetching news...</div>
+  <div class="error-box" id="errorBox"></div>
+
+  <div class="result-meta" id="resultMeta"></div>
+  <div class="articles" id="articleList"></div>
+
+  <button class="toggle-json" id="toggleJsonBtn" onclick="toggleJson()">{ } Show Raw JSON</button>
+  <div class="raw-json" id="rawJson"></div>
+</div>
+
+<!-- Direct URL guide -->
+<div class="card">
+  <h2>🔗 Direct Browser URLs</h2>
+  <div class="endpoints">
+    <b>By country:</b><br>
+    <code>http://localhost:6000/api/news/pk</code><br>
+    <code>http://localhost:6000/api/news/us</code><br>
+    <code>http://localhost:6000/api/news/gb</code><br><br>
+    <b>By country + category:</b><br>
+    <code>http://localhost:6000/api/news/us/category/technology</code><br>
+    <code>http://localhost:6000/api/news/pk/category/sports</code><br><br>
+    <b>Search by keyword:</b><br>
+    <code>http://localhost:6000/api/news/search/cricket</code><br>
+    <code>http://localhost:6000/api/news/search/artificial intelligence</code>
+  </div>
+</div>
+
+<script>
+  const BASE = '';
+  let activeTab = 'byCountry';
+
+  function switchTab(tab) {
+    document.querySelectorAll('.tab').forEach((t, i) => {
+      const ids = ['byCountry','byCategory','byKeyword'];
+      t.classList.toggle('active', ids[i] === tab);
+      document.getElementById('tab-' + ids[i]).style.display = ids[i] === tab ? 'block' : 'none';
+    });
+    activeTab = tab;
+    clearUI();
+  }
+
+  function clearUI() {
+    document.getElementById('errorBox').style.display   = 'none';
+    document.getElementById('resultMeta').style.display = 'none';
+    document.getElementById('articleList').style.display= 'none';
+    document.getElementById('articleList').innerHTML    = '';
+    document.getElementById('toggleJsonBtn').style.display = 'none';
+    document.getElementById('rawJson').style.display   = 'none';
+    document.getElementById('rawJson').textContent      = '';
+  }
+
+  function showLoader(v) {
+    document.getElementById('loader').style.display = v ? 'block' : 'none';
+  }
+
+  function showError(msg) {
+    const b = document.getElementById('errorBox');
+    b.textContent = '❌ ' + msg;
+    b.style.display = 'block';
+  }
+
+  function toggleJson() {
+    const el  = document.getElementById('rawJson');
+    const btn = document.getElementById('toggleJsonBtn');
+    const open = el.style.display === 'block';
+    el.style.display  = open ? 'none' : 'block';
+    btn.textContent   = open ? '{ } Show Raw JSON' : '{ } Hide Raw JSON';
+  }
+
+  async function callAPI(url) {
+    clearUI();
+    showLoader(true);
+    try {
+      const res  = await fetch(url);
+      const json = await res.json();
+      showLoader(false);
+      if (!json.success) {
+        showError(json.error + (json.hint ? ' — ' + json.hint : ''));
+        return null;
+      }
+      return json;
+    } catch (e) {
+      showLoader(false);
+      showError('Cannot reach the API. Is the server running on the correct port?');
+      return null;
+    }
+  }
+
+  async function fetchByCountry() {
+    const country = document.getElementById('countryInput').value.trim().toLowerCase();
+    if (!country) { showError('Enter a 2-letter country code (e.g. pk)'); return; }
+    const json = await callAPI(`${BASE}/api/news/${encodeURIComponent(country)}`);
+    if (json) renderArticles(json.data, json);
+  }
+
+  async function fetchByCategory() {
+    const country  = document.getElementById('catCountryInput').value.trim().toLowerCase();
+    const category = document.getElementById('categorySelect').value;
+    if (!country) { showError('Enter a 2-letter country code'); return; }
+    const json = await callAPI(`${BASE}/api/news/${encodeURIComponent(country)}/category/${category}`);
+    if (json) renderArticles(json.data, json);
+  }
+
+  async function fetchByKeyword() {
+    const kw = document.getElementById('keywordInput').value.trim();
+    if (!kw) { showError('Enter a search keyword'); return; }
+    const json = await callAPI(`${BASE}/api/news/search/${encodeURIComponent(kw)}`);
+    if (json) renderArticles(json.data, json);
+  }
+
+  function renderArticles(d, raw) {
+    const meta = document.getElementById('resultMeta');
+    let metaText = '';
+    if (d.country)  metaText += `<span class="badge">${d.country}</span>`;
+    if (d.category) metaText += `<span class="badge">${d.category}</span>`;
+    if (d.keyword)  metaText += `<span class="badge">🔍 ${d.keyword}</span>`;
+    metaText += ` &nbsp; <b style="color:#e0e0e0">${d.articlesReturned}</b> articles returned`;
+    if (d.totalResults) metaText += ` <span>(${d.totalResults} total available)</span>`;
+    meta.innerHTML = metaText;
+    meta.style.display = 'block';
+
+    const list = document.getElementById('articleList');
+    list.innerHTML = '';
+    if (!d.articles || d.articles.length === 0) {
+      list.innerHTML = '<div style="color:#6e7681;font-size:.9rem;padding:10px 0">No articles found for this query.</div>';
+    } else {
+      d.articles.forEach((a, i) => {
+        list.innerHTML += `
+          <div class="article-card">
+            <div class="art-title">${i + 1}. ${escHtml(a.title)}</div>
+            <div class="art-desc">${escHtml(a.description)}</div>
+            <div class="art-meta">
+              <span>📰 ${escHtml(a.source)}</span>
+              <span>🕐 ${escHtml(a.publishedAt)}</span>
+              ${a.author && a.author !== 'Unknown author' ? `<span>✍️ ${escHtml(a.author)}</span>` : ''}
+              ${a.url ? `<a href="${a.url}" target="_blank" rel="noopener">🔗 Read Full Article ↗</a>` : ''}
+            </div>
+          </div>`;
+      });
+    }
+    list.style.display = 'flex';
+
+    document.getElementById('rawJson').textContent = JSON.stringify(raw, null, 2);
+    document.getElementById('toggleJsonBtn').style.display = 'inline-block';
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // Enter key support
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Enter') return;
+    if (activeTab === 'byCountry') fetchByCountry();
+    else if (activeTab === 'byCategory') fetchByCategory();
+    else fetchByKeyword();
+  });
+</script>
+</body>
+</html>
